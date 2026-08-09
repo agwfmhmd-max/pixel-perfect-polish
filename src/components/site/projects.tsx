@@ -202,10 +202,14 @@ function ProjectModal({
 
   return (
     <Dialog open={!!project} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[85vh] w-[calc(100vw-1.5rem)] overflow-y-auto sm:max-w-2xl">
+      <DialogContent className="max-h-[85vh] w-[calc(100vw-1.5rem)] overflow-y-auto rounded-3xl sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="break-words text-xl sm:text-2xl">{tr(project, "title")}</DialogTitle>
-          <DialogDescription>{tr(project, "category")}</DialogDescription>
+          <DialogTitle className="break-words font-display text-xl sm:text-2xl">
+            {ltr(project, "title")}
+          </DialogTitle>
+          <DialogDescription className="text-[0.7rem] font-semibold uppercase tracking-[0.18em]">
+            {ltr(project, "category")}
+          </DialogDescription>
         </DialogHeader>
 
         {project.image_url ? (
@@ -213,17 +217,20 @@ function ProjectModal({
             src={project.image_url}
             alt={tr(project, "title")}
             loading="lazy"
-            className="w-full rounded-xl border border-border object-cover"
+            className="w-full rounded-2xl border border-border object-cover"
           />
         ) : null}
 
         <div className="space-y-5 text-sm leading-relaxed">
           <Block title={t("projects.overview")}>
-            {tr(project, "full_description") || tr(project, "short_description") || t("projects.tbd")}
+            {ltr(project, "full_description") ||
+              ltr(project, "short_description") ||
+              t("projects.tbd")}
           </Block>
-          <Block title={t("projects.problem")}>{tr(project, "problem") || t("projects.tbd")}</Block>
-          <Block title={t("projects.solution")}>{tr(project, "solution") || t("projects.tbd")}</Block>
-          <Block title={t("projects.features")}>{tr(project, "features") || t("projects.tbd")}</Block>
+          <Block title={t("projects.problem")}>{ltr(project, "problem") || t("projects.tbd")}</Block>
+          <Block title={t("projects.solution")}>{ltr(project, "solution") || t("projects.tbd")}</Block>
+          <Block title={t("projects.features")}>{ltr(project, "features") || t("projects.tbd")}</Block>
+
 
 
           {project.technologies.length ? (
