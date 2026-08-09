@@ -109,7 +109,7 @@ function ProjectCard({
       delay={index * 70}
       className={cn(project.featured ? "sm:col-span-2 lg:col-span-2" : undefined)}
     >
-      <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift">
+      <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft transition-all duration-500 hover:-translate-y-2 hover:border-mint/50 hover:shadow-lift">
         <div className="relative aspect-[16/9] overflow-hidden bg-navy">
           {project.image_url ? (
             <img
@@ -117,31 +117,34 @@ function ProjectCard({
               alt={tr(project, "title")}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
             />
           ) : (
             <div className="grid-pattern flex h-full w-full items-center justify-center opacity-90">
-              <span className="font-display text-2xl font-semibold text-navy-foreground/80">
+              <span className="px-6 text-center font-display text-2xl font-semibold text-navy-foreground/80">
                 {tr(project, "title")}
               </span>
             </div>
           )}
           {project.featured ? (
-            <span className="absolute top-3 end-3 inline-flex items-center gap-1 rounded-full bg-teal/90 px-2.5 py-1 text-xs font-semibold text-navy">
+            <span className="absolute top-3 end-3 inline-flex items-center gap-1 rounded-full bg-mint px-2.5 py-1 text-xs font-semibold text-mint-foreground shadow-soft">
               <Sparkles className="h-3 w-3" aria-hidden="true" />
               {t("projects.featured")}
             </span>
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-5">
-          <p className="text-xs font-medium uppercase tracking-wide text-primary">
-            {tr(project, "category")}
+        <div className="flex flex-1 flex-col p-6">
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            {ltr(project, "category")}
           </p>
-          <h3 className="mt-2 break-words text-base font-semibold sm:text-lg">{tr(project, "title")}</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-            {tr(project, "short_description")}
+          <h3 className="mt-2 break-words font-display text-lg font-semibold sm:text-xl">
+            {ltr(project, "title")}
+          </h3>
+          <p className="mt-2.5 flex-1 text-sm leading-relaxed text-muted-foreground">
+            {ltr(project, "short_description")}
           </p>
+
 
           {project.technologies.length ? (
             <ul className="mt-4 flex flex-wrap gap-1.5">
