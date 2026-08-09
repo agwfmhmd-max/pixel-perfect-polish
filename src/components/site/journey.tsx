@@ -1,11 +1,13 @@
 import { Reveal, SectionHeading } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useEducation, useExperience, useProjects } from "@/lib/portfolio";
 
 export function Journey() {
   const { t } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   const { data: education } = useEducation();
   const { data: experience } = useExperience();
   const { data: projects } = useProjects();
@@ -27,7 +29,7 @@ export function Journey() {
       id: `proj-${p.id}`,
       year: "",
       title: tr(p, "title"),
-      subtitle: tr(p, "short_description") || tr(p, "category"),
+      subtitle: ltr(p, "short_description") || ltr(p, "category"),
     })),
   ];
 

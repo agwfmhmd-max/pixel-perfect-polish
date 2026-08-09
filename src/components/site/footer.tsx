@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useProfile } from "@/lib/portfolio";
 
 const LINKS = ["home", "about", "education", "experience", "skills", "projects", "contact"] as const;
@@ -27,6 +28,7 @@ export function FinalCta() {
 export function Footer() {
   const { t } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   const { data: profile } = useProfile();
 
   return (
@@ -34,7 +36,7 @@ export function Footer() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:px-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="font-display text-base font-semibold">{tr(profile, "full_name")}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{tr(profile, "headline")}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{ltr(profile, "headline")}</p>
         </div>
 
         <nav aria-label="Footer">

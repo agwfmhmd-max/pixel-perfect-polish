@@ -2,12 +2,14 @@ import { Building2 } from "lucide-react";
 import { Reveal, SectionHeading } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useExperience } from "@/lib/portfolio";
 import { formatMonthYear } from "@/lib/links";
 
 export function Experience() {
   const { t, lang } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   const { data: experience } = useExperience();
 
   return (
@@ -40,7 +42,7 @@ export function Experience() {
                 ) : null}
                 {tr(item, "description") ? (
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {tr(item, "description")}
+                    {ltr(item, "description")}
                   </p>
                 ) : null}
                 {tr(item, "location") ? (

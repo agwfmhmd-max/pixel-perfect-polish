@@ -2,12 +2,14 @@ import { GraduationCap } from "lucide-react";
 import { Reveal, SectionHeading } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useEducation } from "@/lib/portfolio";
 import { formatMonthYear } from "@/lib/links";
 
 export function Education() {
   const { t, lang } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   const { data: education } = useEducation();
 
   return (
@@ -39,7 +41,7 @@ export function Education() {
                         </p>
                       ) : null}
                       {tr(item, "description") ? (
-                        <p className="mt-2 text-sm text-muted-foreground">{tr(item, "description")}</p>
+                        <p className="mt-2 text-sm text-muted-foreground">{ltr(item, "description")}</p>
                       ) : null}
                       {tr(item, "location") ? (
                         <p className="mt-2 text-xs text-muted-foreground">{tr(item, "location")}</p>

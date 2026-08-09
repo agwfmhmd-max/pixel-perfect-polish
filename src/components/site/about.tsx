@@ -2,11 +2,13 @@ import { Banknote, Code2, GraduationCap, MapPin } from "lucide-react";
 import { Reveal, SectionHeading } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useProfile, useStats } from "@/lib/portfolio";
 
 export function About() {
   const { t } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   const { data: profile } = useProfile();
   const { data: stats } = useStats();
 
@@ -23,7 +25,7 @@ export function About() {
 
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <Reveal className="space-y-4 text-base leading-relaxed text-muted-foreground">
-            <p className="text-lg text-foreground">{tr(profile, "bio")}</p>
+            <p className="text-lg text-foreground">{ltr(profile, "bio")}</p>
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
             <p>{t("about.p3")}</p>
