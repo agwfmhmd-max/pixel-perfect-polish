@@ -24,6 +24,7 @@ const en: Dict = {
   "nav.contact": "Contact",
   "nav.menu": "Open menu",
   "nav.theme": "Toggle theme",
+  "nav.talk": "Let's Talk",
 
   "hero.eyebrow": "Finance · Technology · Innovation",
   "hero.role1": "Banque & Assurance Student",
@@ -120,6 +121,7 @@ const fr: Dict = {
   "nav.contact": "Contact",
   "nav.menu": "Ouvrir le menu",
   "nav.theme": "Changer le thème",
+  "nav.talk": "Discutons",
 
   "hero.eyebrow": "Finance · Technologie · Innovation",
   "hero.role1": "Étudiant en Banque et Assurance",
@@ -217,6 +219,7 @@ const ar: Dict = {
   "nav.contact": "التواصل",
   "nav.menu": "فتح القائمة",
   "nav.theme": "تغيير المظهر",
+  "nav.talk": "لنتحدث",
 
   "hero.eyebrow": "مالية · تقنية · ابتكار",
   "hero.role1": "طالب في البنوك والتأمين",
