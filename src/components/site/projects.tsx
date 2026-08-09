@@ -12,6 +12,7 @@ import { Reveal, SectionHeading } from "./section";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized, localizedValue } from "@/lib/localized";
+import { useLiveTr } from "@/lib/live-translate";
 import { useProjects } from "@/lib/portfolio";
 import { externalUrl } from "@/lib/links";
 import { PROJECT_CATEGORIES } from "@/data/fallback";
@@ -102,6 +103,7 @@ function ProjectCard({
 }) {
   const { t } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
 
   return (
     <Reveal
@@ -195,6 +197,7 @@ function ProjectModal({
 }) {
   const { t } = useI18n();
   const { tr } = useLocalized();
+  const { ltr } = useLiveTr();
   if (!project) return null;
 
   return (
