@@ -52,12 +52,14 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <Reveal className={cn("mb-10 max-w-2xl", className)}>
-      <p className="mb-3 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-primary">
-        <span className="h-px w-8 bg-primary/60" aria-hidden="true" />
+    <Reveal className={cn("mb-12 max-w-2xl", className)}>
+      <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+        <span className="h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true" />
         {kicker}
       </p>
-      <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+      <h2 className="text-3xl leading-tight font-semibold sm:text-[2.75rem]">{title}</h2>
+      <span className="mt-5 block h-1 w-16 rounded-full" style={{ background: "var(--gradient-accent)" }} aria-hidden="true" />
     </Reveal>
   );
+
 }
