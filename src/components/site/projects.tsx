@@ -57,10 +57,10 @@ export function Projects() {
                 onClick={() => setFilter(c.id)}
                 aria-pressed={filter === c.id}
                 className={cn(
-                  "min-h-10 rounded-full border px-4 text-sm font-medium transition-all",
+                  "min-h-10 rounded-full border px-4 text-sm font-medium transition-all duration-300",
                   filter === c.id
-                    ? "border-primary bg-primary text-primary-foreground shadow-soft"
-                    : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:text-foreground",
+                    ? "border-transparent bg-mint text-mint-foreground shadow-glow"
+                    : "border-border bg-card text-muted-foreground hover:-translate-y-0.5 hover:border-mint/40 hover:text-foreground",
                 )}
               >
                 {c.label}
@@ -276,7 +276,10 @@ function ProjectModal({
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h4 className="mb-1 font-display text-sm font-semibold">{title}</h4>
+      <h4 className="mb-1.5 inline-flex items-center gap-2 font-display text-sm font-semibold">
+        <span className="h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true" />
+        {title}
+      </h4>
       <p className="whitespace-pre-line break-words text-muted-foreground">{children}</p>
     </div>
   );
