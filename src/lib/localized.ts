@@ -24,6 +24,9 @@ export function localizedValue(row: unknown, field: string, lang: Lang): string 
   const record = row as Record<string, unknown>;
   const translated = record[langColumn(field, lang)];
   if (typeof translated === "string" && translated.trim() !== "") return translated;
+  // Deliberately do not fall back to English for a selected non-English language.
+  // This keeps the public interface linguistically consistent.
+  if (lang !== "en") return "";
   const base = record[field];
   return typeof base === "string" ? base : base == null ? "" : String(base);
 }

@@ -152,17 +152,17 @@ export function useLiveTr() {
   const ltr = useCallback(
     (row: unknown, field: string): string => {
       const base = localizedValue(row, field, "en");
-      if (lang === "en" || !ctx) return localizedValue(row, field, lang) || base;
+      if (lang === "en" || !ctx) return localizedValue(row, field, lang);
 
       const stored = localizedValue(row, field, lang);
-      // A stored translation exists when it differs from the English base.
-      if (stored && stored !== base) return stored;
-      if (!base || !hasLetters(base)) return base;
+      if (stored) return stored;
+      if (!base || !hasLetters(base)) return "";
 
       const cached = ctx.get(lang, base);
       if (cached) return cached;
       ctx.request(lang, base);
-      return base;
+      // Keep the selected language pure while the optional translation loads.
+      return "";
     },
     [ctx, lang],
   );
