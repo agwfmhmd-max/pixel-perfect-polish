@@ -1,9 +1,9 @@
-import { ArrowRight, Github, Linkedin, Mail, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, Facebook, Github, Globe2, Instagram, Linkedin, Mail, MessageCircle, Sparkles, TrendingUp, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
 import { useLiveTr } from "@/lib/live-translate";
-import { useProfile } from "@/lib/portfolio";
+import { useProfile, useSocialLinks } from "@/lib/portfolio";
 import { emailHref, githubUrl, linkedinUrl } from "@/lib/links";
 
 export function Hero() {
@@ -11,12 +11,25 @@ export function Hero() {
   const { tr } = useLocalized();
   const { ltr } = useLiveTr();
   const { data: profile } = useProfile();
-
-  const socials = [
-    { href: githubUrl(profile.github_url), label: "GitHub", Icon: Github },
-    { href: linkedinUrl(profile.linkedin_url), label: "LinkedIn", Icon: Linkedin },
-    { href: emailHref(profile.email), label: "Email", Icon: Mail },
-  ];
+  const { data: managedSocials = [] } = useSocialLinks();
+  const iconFor = (icon: string | null, platform: string) => {
+    const key = (icon || platform).toLowerCase();
+    if (key.includes("github")) return Github;
+    if (key.includes("linkedin")) return Linkedin;
+    if (key.includes("whatsapp")) return MessageCircle;
+    if (key.includes("instagram")) return Instagram;
+    if (key.includes("facebook")) return Facebook;
+    if (key.includes("youtube")) return Youtube;
+    if (key.includes("mail") || key.includes("email")) return Mail;
+    return Globe2;
+  };
+  const socials = managedSocials.length > 0
+    ? managedSocials.map((item) => ({ href: item.url, label: item.platform, Icon: iconFor(item.icon, item.platform) }))
+    : [
+        { href: githubUrl(profile.github_url), label: "GitHub", Icon: Github },
+        { href: linkedinUrl(profile.linkedin_url), label: "LinkedIn", Icon: Linkedin },
+        { href: emailHref(profile.email), label: "Email", Icon: Mail },
+      ];
 
   return (
     <section id="home" className="relative overflow-hidden pt-32 pb-16 sm:pt-40 sm:pb-24">
@@ -89,18 +102,24 @@ export function Hero() {
           </ul>
         </div>
 
-        <HeroVisual />
+        <HeroVisual profileImage={profile.profile_image} name={ltr(profile, "full_name")} />
       </div>
     </section>
   );
 }
 
-function HeroVisual() {
+function HeroVisual({ profileImage, name }: { profileImage: string | null; name: string }) {
   const { t } = useI18n();
   const bars = [38, 56, 44, 72, 60, 88, 76];
 
   return (
-    <div className="reveal is-visible relative mx-auto w-full max-w-md" aria-hidden="true">
+    <div className="reveal is-visible relative mx-auto w-full max-w-md">
+      {profileImage ? (
+        <div className="relative mx-auto mb-6 h-44 w-44 overflow-hidden rounded-[2.25rem] border-4 border-card shadow-lift sm:h-52 sm:w-52">
+          <img src={profileImage} alt={name || "Profile"} className="h-full w-full object-cover" loading="eager" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/25 to-transparent" aria-hidden="true" />
+        </div>
+      ) : null}
       <div className="absolute -inset-8 rounded-[3rem] bg-mint/20 blur-3xl" />
 
       <div className="relative ink-panel float-soft p-7">

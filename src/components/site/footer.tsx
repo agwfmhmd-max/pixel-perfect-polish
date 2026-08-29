@@ -1,10 +1,10 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Facebook, Globe2, Github, Instagram, Linkedin, Mail, MessageCircle, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./section";
 import { useI18n } from "@/lib/i18n";
 import { useLocalized } from "@/lib/localized";
 import { useLiveTr } from "@/lib/live-translate";
-import { useProfile } from "@/lib/portfolio";
+import { useProfile, useSocialLinks } from "@/lib/portfolio";
 
 const LINKS = ["home", "about", "education", "experience", "skills", "projects", "contact"] as const;
 
